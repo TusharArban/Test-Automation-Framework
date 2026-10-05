@@ -16,11 +16,6 @@ on:
   pull_request:
     branches: ["master"]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
   build:
 
@@ -65,6 +60,7 @@ jobs:
 
     - name: Copy Report to gh-pages Folder
       if: always()
+      
       run: |
         mkdir -p public/extent-reports
         cp -R report.html public/extent-reports/
@@ -73,11 +69,9 @@ jobs:
 
     - name: Upload GitHub Pages site
       if: always()
-      uses: actions/upload-pages-artifact@v3
+      uses: avinal/github-pages-deploy-action@v0.9
       with:
-        path: public
-
-    - name: Deploy GitHub Pages site
-      if: always()
-      uses: actions/deploy-pages@v5.0.1
+        DOCS_FOLDER: public/extent-reports/
+        GITHUB_TOKEN: ${{ secrets.PAT12345 }}
+       
 
