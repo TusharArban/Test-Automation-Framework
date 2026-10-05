@@ -66,6 +66,12 @@ jobs:
         cp -R screenshot/ public/extent-reports/screenshot/
         ls -l
 
+    - name: Upload GitHub Pages site
+      if: always()
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: public
+
     - name: Deploy GitHub Pages site
       if: always()
       uses: actions/deploy-pages@v5.0.1
