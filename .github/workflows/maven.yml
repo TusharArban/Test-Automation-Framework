@@ -40,6 +40,14 @@ jobs:
        name: Test logs
        path: log/
 
+    - name: Upload Screenshots as Artifacts
+      if: always()
+      uses: actions/upload-artifact@v7.0.1
+      with:
+        name: screenshots
+        path: screenshot/
+
+      
     - name: Upload Test Reports
       if: always()
       uses: actions/upload-artifact@v7.0.1
